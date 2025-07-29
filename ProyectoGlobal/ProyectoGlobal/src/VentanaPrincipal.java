@@ -15,7 +15,7 @@ public class VentanaPrincipal extends JFrame {
         JPanel panelFondo = new JPanel() {
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon fondo = new ImageIcon("imagenes/fondo.jpg"); // CREA ESTA CARPETA Y AGREGA LA IMAGEN
+                ImageIcon fondo = new ImageIcon("imagenes/fondo.png*"); // CREA ESTA CARPETA Y AGREGA LA IMAGEN
                 g.drawImage(fondo.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
