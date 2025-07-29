@@ -19,8 +19,9 @@ public class VentanaComidas extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
+        // Panel SIN fondo de imagen
         JPanel panel = new JPanel(null);
-        panel.setBackground(new Color(255, 250, 240));
+        panel.setBackground(new Color(255, 250, 240)); // Fondo beige claro
 
         JLabel lbl = new JLabel("Seleccione su comida (" + pais + " - " + tipo + ")");
         lbl.setBounds(100, 10, 400, 30);
@@ -54,7 +55,10 @@ public class VentanaComidas extends JFrame {
             });
 
             btnVerComida.addActionListener(e -> {
-                String rutaImagen = "imagenes/" + nombre.toLowerCase().replace(" ", "_") + ".jpg";
+                String rutaImagen = "";
+                if (nombre.equalsIgnoreCase("Arroz con Pollo")) {
+                    rutaImagen = "image/FONDO.png";
+                }
                 new VentanaDetalleComida(nombre, rutaImagen);
             });
 
@@ -89,55 +93,6 @@ public class VentanaComidas extends JFrame {
                     {"Arroz con Guandú", "4.00"},
                     {"Pescado con Patacones", "6.00"},
                     {"Saos", "3.50"}
-            };
-        } else if (pais.equals("Panamá") && tipo.equals("dulce")) {
-            return new String[][] {
-                    {"Hojaldras", "2.50"},
-                    {"Suspiros", "1.75"},
-                    {"Dulce de Guayaba", "3.00"},
-                    {"Bienmesabe", "3.25"}
-            };
-        } else if (pais.equals("México") && tipo.equals("salado")) {
-            return new String[][] {
-                    {"Tacos al Pastor", "5.00"},
-                    {"Enchiladas", "6.50"},
-                    {"Chiles Rellenos", "7.00"},
-                    {"Pozole", "5.75"}
-            };
-        } else if (pais.equals("México") && tipo.equals("dulce")) {
-            return new String[][] {
-                    {"Churros", "3.00"},
-                    {"Flan", "4.00"},
-                    {"Tres Leches", "4.50"},
-                    {"Cajeta", "3.75"}
-            };
-        } else if (pais.equals("Italia") && tipo.equals("salado")) {
-            return new String[][] {
-                    {"Pizza Margherita", "8.00"},
-                    {"Lasagna", "9.50"},
-                    {"Risotto", "10.00"},
-                    {"Pasta Carbonara", "8.75"}
-            };
-        } else if (pais.equals("Italia") && tipo.equals("dulce")) {
-            return new String[][] {
-                    {"Tiramisú", "6.00"},
-                    {"Cannoli", "5.50"},
-                    {"Panna Cotta", "6.25"},
-                    {"Gelato", "4.75"}
-            };
-        } else if (pais.equals("Japón") && tipo.equals("salado")) {
-            return new String[][] {
-                    {"Sushi Variado", "12.00"},
-                    {"Ramen", "10.50"},
-                    {"Tempura", "9.75"},
-                    {"Takoyaki", "8.00"}
-            };
-        } else if (pais.equals("Japón") && tipo.equals("dulce")) {
-            return new String[][] {
-                    {"Mochi", "5.00"},
-                    {"Dorayaki", "4.50"},
-                    {"Taiyaki", "4.75"},
-                    {"Matcha Ice Cream", "5.25"}
             };
         }
         return new String[][] {
