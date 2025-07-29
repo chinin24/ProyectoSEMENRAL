@@ -30,8 +30,8 @@ public class MetodoPago extends JFrame {
                 JOptionPane.showMessageDialog(null,
                         "Has seleccionado: " + metodoEntrega + "\nPago: " + pago);
                 dispose();
-                // Cambiamos esto para que llame a VentanaResena primero
-                new VentanaResena(comidas, precios).setVisible(true);
+                // Ahora llama directamente a la clase Factura
+                new Factura("Factura", comidas, precios);
             }
         });
 

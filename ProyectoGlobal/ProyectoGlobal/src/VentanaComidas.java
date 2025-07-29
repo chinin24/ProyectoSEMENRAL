@@ -21,7 +21,7 @@ public class VentanaComidas extends JFrame {
 
         // Panel SIN fondo de imagen
         JPanel panel = new JPanel(null);
-        panel.setBackground(new Color(255, 250, 240)); // Fondo beige claro
+        panel.setBackground(new Color(255, 255, 255)); // Fondo beige claro
 
         JLabel lbl = new JLabel("Seleccione su comida (" + pais + " - " + tipo + ")");
         lbl.setBounds(100, 10, 400, 30);
