@@ -55,7 +55,6 @@ public class VentanaCarrito extends JFrame {
 
         cargarCarrito(lblTotal);
 
-        // Listeners de botones (igual que antes)
         btnVolver.addActionListener(e -> volverAlMenu());
         btnPagar.addActionListener(e -> procesarPago());
     }
@@ -94,7 +93,6 @@ public class VentanaCarrito extends JFrame {
     }
 
     private void mostrarMensajeCarritoVacio() {
-        // Solución Java pura con espacios para centrado visual
         String mensajeCentrado = "\n\n        El carrito está vacío.\n\n        Agrega productos desde el menú.";
         areaCarrito.setFont(new Font("Arial", Font.ITALIC, 14));
         areaCarrito.setText(mensajeCentrado);
@@ -114,10 +112,16 @@ public class VentanaCarrito extends JFrame {
             return;
         }
 
-        int confirmacion = JOptionPane.showConfirmDialog(this,
+        // ✅ Botones personalizados en español
+        Object[] opciones = {"Sí, pagar", "No, cancelar"};
+        int confirmacion = JOptionPane.showOptionDialog(this,
                 "¿Desea proceder al pago de $" + String.format("%.2f", total) + "?",
                 "Confirmar pago",
-                JOptionPane.YES_NO_OPTION);
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                opciones,
+                opciones[0]);
 
         if (confirmacion == JOptionPane.YES_OPTION) {
             vaciarArchivoCarrito();

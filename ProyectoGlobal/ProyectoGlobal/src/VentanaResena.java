@@ -59,7 +59,6 @@ public class VentanaResena extends JFrame {
                 String resenaTexto = campoResena.getText().trim();
                 int estrellasSeleccionadas = (int) estrellas.getSelectedItem();
 
-                // Guardar la reseña en un archivo (opcional)
                 guardarResena(resenaTexto, estrellasSeleccionadas);
 
                 JOptionPane.showMessageDialog(null, "¡Gracias por tu reseña!");
@@ -76,7 +75,6 @@ public class VentanaResena extends JFrame {
     }
 
     private void guardarResena(String resena, int estrellas) {
-        // Implementación opcional para guardar las reseñas en un archivo
         try {
             java.io.FileWriter writer = new java.io.FileWriter("reseñas.txt", true);
             writer.write("Estrellas: " + estrellas + "\n");
@@ -89,7 +87,7 @@ public class VentanaResena extends JFrame {
     }
 
     private void mostrarFactura() {
-        dispose();
-        new Factura("Factura", comidas, precios).setVisible(true);
+        dispose(); // Cierra la ventana actual
+        System.exit(0); // Finaliza completamente el programa
     }
 }

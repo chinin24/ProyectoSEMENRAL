@@ -16,19 +16,16 @@ public class Factura extends JFrame {
         panelPrincipal.setLayout(new BoxLayout(panelPrincipal, BoxLayout.Y_AXIS));
         panelPrincipal.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
 
-        // Nombre de la empresa
         JLabel lblNombreEmpresa = new JLabel("GlobalEatsToGo");
         lblNombreEmpresa.setFont(new Font("Arial", Font.BOLD, 20));
         lblNombreEmpresa.setAlignmentX(Component.CENTER_ALIGNMENT);
         panelPrincipal.add(lblNombreEmpresa);
 
-        // Dirección ficticia
         JLabel lblDireccion = new JLabel("Calle 50, Ciudad de Panamá");
         lblDireccion.setFont(new Font("Arial", Font.PLAIN, 14));
         lblDireccion.setAlignmentX(Component.CENTER_ALIGNMENT);
         panelPrincipal.add(lblDireccion);
 
-        // Fecha y hora actual
         LocalDateTime ahora = LocalDateTime.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         JLabel lblFecha = new JLabel("Fecha: " + ahora.format(formato));
@@ -38,7 +35,6 @@ public class Factura extends JFrame {
 
         panelPrincipal.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        // Título reseña
         JLabel lblResena = new JLabel("Detalle de la compra");
         lblResena.setFont(new Font("Arial", Font.BOLD, 16));
         lblResena.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -46,7 +42,6 @@ public class Factura extends JFrame {
 
         panelPrincipal.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        // Panel para los ítems con scroll
         JPanel panelItems = new JPanel();
         panelItems.setLayout(new BoxLayout(panelItems, BoxLayout.Y_AXIS));
         panelItems.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -78,18 +73,21 @@ public class Factura extends JFrame {
 
         panelPrincipal.add(Box.createRigidArea(new Dimension(0, 15)));
 
-        // Total
         JLabel lblTotal = new JLabel("Total: B/." + String.format("%.2f", total));
         lblTotal.setFont(new Font("Arial", Font.BOLD, 16));
         lblTotal.setAlignmentX(Component.RIGHT_ALIGNMENT);
         panelPrincipal.add(lblTotal);
 
-        // Botón de agradecimiento
-        JButton btnGracias = new JButton("¡Gracias por su compra!");
-        btnGracias.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnGracias.addActionListener(e -> dispose());
+        // Botón para cerrar factura y continuar a reseña
+        JButton btnCerrar = new JButton("Cerrar factura");
+        btnCerrar.setAlignmentX(Component.CENTER_ALIGNMENT);
+        btnCerrar.addActionListener(e -> {
+            dispose();
+            new VentanaResena(comidasSeleccionadas, precios).setVisible(true);
+        });
+
         panelPrincipal.add(Box.createRigidArea(new Dimension(0, 15)));
-        panelPrincipal.add(btnGracias);
+        panelPrincipal.add(btnCerrar);
 
         JScrollPane scrollPane = new JScrollPane(panelPrincipal);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -98,3 +96,4 @@ public class Factura extends JFrame {
         setVisible(true);
     }
 }
+

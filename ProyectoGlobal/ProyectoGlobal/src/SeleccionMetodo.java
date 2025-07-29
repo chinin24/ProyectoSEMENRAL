@@ -11,24 +11,54 @@ public class SeleccionMetodo extends JFrame {
         this.precios = precios;
 
         setTitle("Método de entrega");
-        setSize(300, 200);
+        setSize(350, 200);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
+        // Componentes
+        JLabel lblSeleccion = new JLabel("Selecciona método:");
         String[] opciones = {"Para comer en el restaurante", "Para llevar", "Delivery a domicilio"};
         JComboBox<String> combo = new JComboBox<>(opciones);
-        JButton continuar = new JButton("Continuar");
 
+        JButton continuar = new JButton("Continuar ➡");
+        JButton regresar = new JButton("⬅ Regresar al carrito");
+
+        // Acción botón continuar
         continuar.addActionListener(e -> {
             String seleccion = (String) combo.getSelectedItem();
             dispose();
-            new MetodoPago(seleccion, comidas, precios).setVisible(true);
+
+            if (seleccion.equals("Delivery a domicilio")) {
+                new MapaEntregaConImagenes(comidas, precios);
+            } else {
+                new TicketRetiro(comidas, precios);
+            }
         });
 
+        // Acción botón regresar
+        regresar.addActionListener(e -> {
+            dispose();
+            new VentanaCarrito().setVisible(true);  // ← Asegúrate de tener esta clase disponible
+        });
+
+        // Panel de botones
+        JPanel panelBotones = new JPanel();
+        panelBotones.add(regresar);
+        panelBotones.add(continuar);
+
+        // Panel general
         JPanel panel = new JPanel();
-        panel.add(new JLabel("Selecciona método:"));
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        lblSeleccion.setAlignmentX(CENTER_ALIGNMENT);
+        combo.setAlignmentX(CENTER_ALIGNMENT);
+        panelBotones.setAlignmentX(CENTER_ALIGNMENT);
+
+        panel.add(lblSeleccion);
+        panel.add(Box.createVerticalStrut(10));
         panel.add(combo);
-        panel.add(continuar);
+        panel.add(Box.createVerticalStrut(20));
+        panel.add(panelBotones);
 
         add(panel);
         setVisible(true);

@@ -40,8 +40,9 @@ public class PagoTarjeta extends JFrame {
 
             JOptionPane.showMessageDialog(null, "Pago exitoso");
             dispose();
-            // Cambiamos esto para que llame a VentanaResena primero
-            new VentanaResena(comidas, precios).setVisible(true);
+
+            // Ahora se abre directamente la factura
+            new Factura("Factura", comidas, precios);
         });
 
         JPanel panel = new JPanel();
